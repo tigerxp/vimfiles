@@ -37,7 +37,7 @@ nmap <D-0> g^
 set linespace=4
 
 "disable visual bell
-set visualbell t_vb=
+"set visualbell t_vb=
 
 "try to make possible to navigate within lines of wrapped lines
 nmap <Down> gj
@@ -367,7 +367,7 @@ function! s:HighlightLongLines(width)
     endif
 endfunction
 
-set transparency=5
+" set transparency=5
 
 
 "key mapping for window navigation
