@@ -41,3 +41,50 @@ endif
 " In Insert mode, save and return back to insert mode
 imap <c-s> <c-o><c-s>
 
+set listchars=tab:▸\ ,eol:¬
+
+" Fix appearance of the :list characters
+function! Listchars_Init()
+  set listchars=
+
+  " tab
+  execute "set listchars+=tab:" . nr2char(187) . '\ '
+  " eol
+  execute "set listchars+=eol:" . nr2char(182)
+
+  " trail
+  execute "set listchars+=trail:" . nr2char(183)
+
+  " precedes
+  if strlen(substitute(strtrans(nr2char(133)), ".", "x", "g")) == 1
+    " ellipses
+    execute "set listchars+=precedes:" . nr2char(133)
+  elseif strlen(substitute(strtrans(nr2char(8230)), ".", "x", "g")) == 1
+    " ellipses (2nd try)
+    execute "set listchars+=precedes:" . nr2char(8230)
+  elseif strlen(substitute(strtrans(nr2char(8592)), ".", "x", "g")) == 1
+    " left arrow  (digraph <-)
+    execute "set listchars+=precedes:" . nr2char(8592)
+  else
+    " underscore
+    execute "set listchars+=precedes:" . nr2char(95)
+  endif
+
+  " extends
+  if strlen(substitute(strtrans(nr2char(133)), ".", "x", "g")) == 1
+    " ellipses
+    execute "set listchars+=extends:" . nr2char(133)
+  elseif strlen(substitute(strtrans(nr2char(8230)), ".", "x", "g")) == 1
+    " ellipses (2nd try)
+    execute "set listchars+=extends:" . nr2char(8230)
+  elseif strlen(substitute(strtrans(nr2char(8594)), ".", "x", "g")) == 1
+    " right arrow (digraph ->)
+    execute "set listchars+=extends:" . nr2char(8594)
+  else
+    " underscore
+    execute "set listchars+=extends:" . nr2char(95)
+  endif
+
+endfunction
+call Listchars_Init()
+
